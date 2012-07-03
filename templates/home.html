@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+        <p>Hi {{ user.username }}</p>
+        <p>You are following:</p>
+        <ul>
+            {% for handlers in lst %}
+                <li><a href="/tweets/{{ handlers.following }}/0/">{{ handlers.following}}</a></li>
+            {% endfor %}
+        </ul>
+{% endblock %}

@@ -1,0 +1,20 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+    </head>
+    <body>
+        <h2>TweetAnalyzer</h2><hr>
+        <p>
+            {% if user.is_authenticated %}
+                <a href="/home/">Home</a>&nbsp&nbsp
+                <a href="/accounts/logout/">Logout</a>&nbsp&nbsp
+                <a href="/follow/form/">Follow</a>&nbsp&nbsp
+            {% else %}
+                <a href="/accounts/login/">Login</a>&nbsp&nbsp
+                <a href="/accounts/register/">Register</a>&nbsp&nbsp
+            {% endif %}
+        </p><hr>
+        {% block content %}{% endblock %}
+    </body>
+</html>

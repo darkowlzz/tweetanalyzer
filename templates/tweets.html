@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+        <img src={{ img }}><br>
+        <ul>
+            {% for tweet in lst %}
+                <li>{{ tweet.text }}<br>{{ tweet.handler }}&nbsp&nbsp Created:{{ tweet.created }} &nbsp&nbsp Source: {{ tweet.source }} &nbsp&nbsp ID:{{ tweet.tweet_id }}</li>
+            <br>                
+            {% endfor %}
+        </ul>
+        <hr>
+        {% if page == '0' %}
+            {% if next %}
+                <a href="/tweets/{{ handler }}/{{ page|add:"+1" }}/">Next</a>
+            {% else %}
+                <p>single page</p>
+            {% endif %}
+
+        {% else %}
+            {% if next %}
+                <a href="/tweets/{{ handler }}/{{ page|add:"-1" }}/">Prev</a>&nbsp&nbsp
+                <a href="/tweets/{{ handler }}/{{ page|add:"+1"}}/">Next</a>
+            {% else %}
+                <p>Last page</p>
+                <a href="/tweets/{{ handler }}/{{ page|add:"-1" }}/">Prev</a>
+            {% endif %}
+        {% endif %}
+{% endblock %}
