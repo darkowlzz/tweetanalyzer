@@ -1,14 +1,17 @@
 from django.conf.urls.defaults import patterns, include, url
-from tweetanalyzer.views import current_datetime, register
+from tweetanalyzer.views import register
 from tweetanalyzer.bmtu.views import tweet_list, follow, thanks, home
 from django.contrib.auth.views import login, logout
+from django.conf import settings
+from django.views.generic.simple import direct_to_template
 
 from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
+    (r'^$', direct_to_template, {"template": "main.html",}),
+    (r'^twitter/', include('twython_django_oauth.urls')),
     (r'^home/$', home),
-    (r'^time/$', current_datetime),
     (r'^tweets/(?P<handler>\w+)/(?P<page>\d+)/$', tweet_list),
     (r'^tweets/(?P<handler>\w+)/$', tweet_list),
     (r'^accounts/login/$', login),
@@ -25,4 +28,5 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
 )

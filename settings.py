@@ -1,5 +1,6 @@
 # Django settings for tweetanalyzer project.
 import os.path
+#import os
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -15,7 +16,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'tweetanalyzer',                      # Or path to database file if using sqlite3.
         'USER': 'sunny',                      # Not used with sqlite3.
-        'PASSWORD': 'sunysunysuny',                  # Not used with sqlite3.
+        'PASSWORD': 'toor',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
@@ -44,14 +45,16 @@ USE_I18N = True
 # calendars according to the current locale
 USE_L10N = True
 
+#SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
+
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = os.path.join(os.path.dirname(__file__), 'media').replace('\\','/')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = ''
+MEDIA_URL = '/media/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
@@ -121,7 +124,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
-    #'twython_django_oauth',
+    'twython_django_oauth',
     'tweetanalyzer.bmtu',
 )
 
@@ -149,9 +152,9 @@ LOGGING = {
 }
 
 
-#TWITTER_KEY = "QYFLU35mcYg0fU0iX6igZQ"
-#TWITTER_SECRET = "x9OmNGNboZIJ3MjPjfXdaN6v0AR6TqKU7gHsoEKk"
-#LOGIN_URL = "http://tweetanalyzer.infocircles.com/twitter/login"
-#LOGOUT_URL = "http://tweetanalyzer.infocircles.com/twitter/logout"
-#LOGIN_REDIRECT_URL = "http://tweetanalyzer.infocircles.com"
-#LOGOUT_REDIRECT_URL = "http://tweetanalyzer.infocircles.com"
+TWITTER_KEY = "QYFLU35mcYg0fU0iX6igZQ"
+TWITTER_SECRET = "x9OmNGNboZIJ3MjPjfXdaN6v0AR6TqKU7gHsoEKk"
+LOGIN_URL = "http://localhost:8000/twitter/login"
+LOGOUT_URL = "http://localhost:8000/twitter/logout"
+LOGIN_REDIRECT_URL = "http://localhost:8000/home/"
+LOGOUT_REDIRECT_URL = "http://localhost:8000/"

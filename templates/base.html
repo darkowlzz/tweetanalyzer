@@ -7,14 +7,15 @@
         <h2>TweetAnalyzer</h2><hr>
         <p>
             {% if user.is_authenticated %}
+                <img src="http://api.twitter.com/1/users/profile_image/{{ user.username }}.json" align="middle"/>&nbsp&nbsp
                 <a href="/home/">Home</a>&nbsp&nbsp
                 <a href="/accounts/logout/">Logout</a>&nbsp&nbsp
                 <a href="/follow/form/">Follow</a>&nbsp&nbsp
             {% else %}
-                <a href="/accounts/login/">Login</a>&nbsp&nbsp
-                <a href="/accounts/register/">Register</a>&nbsp&nbsp
+                <a href="/twitter/login/"><img src="{{ MEDIA_URL }}images/sign-in-with-twitter-d.png"></a>
             {% endif %}
-        </p><hr>
+            
+        </p><hr/>
         {% block content %}{% endblock %}
     </body>
 </html>
