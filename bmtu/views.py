@@ -34,7 +34,7 @@ def tweet_list(request, handler, page=0):
     return render_to_response('tweets.html', locals(), context_instance=RequestContext(request, processors=[custom_proc]))
 
 @login_required
-def follow(request):
+def subscribe(request):
 
     """ This part receives the twitter id's and maked necessary changes in the database"""
     if request.method == 'POST':
@@ -59,7 +59,7 @@ def follow(request):
                     # don't save anything if anyone of a and b fails to save
                     pass
 
-            return HttpResponseRedirect('/follow/thanks/')
+            return HttpResponseRedirect('/subscribe/thanks/')
     else:
         """ Collects all the followers using Twitter API and sends to the form"""
         # sending the http request to twitter

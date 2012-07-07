@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-        <p>You are following:</p>
+        <p>You are subscribed to:</p>
         <ul>
             {% for handlers in lst %}
                 <li><a href="/tweets/{{ handlers.following }}/0/"><img src="http://api.twitter.com/1/users/profile_image/{{ handlers.following }}.json"/></a></li>
