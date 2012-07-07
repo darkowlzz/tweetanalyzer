@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import patterns, include, url
 from tweetanalyzer.views import register
-from tweetanalyzer.bmtu.views import tweet_list, subscribe, thanks, home
+from tweetanalyzer.bmtu.views import tweet_list, subscribe, unsubscribe, thanks, home
 from django.contrib.auth.views import login, logout
 from django.conf import settings
 from django.views.generic.simple import direct_to_template
@@ -19,6 +19,8 @@ urlpatterns = patterns('',
     (r'^accounts/register/$', register),
     (r'^subscribe/thanks/$', thanks),
     (r'^subscribe/form/$', subscribe),
+    (r'^unsubscribe/form/$', unsubscribe),
+    (r'^unsubscribe/thanks/$', thanks),
     # Examples:
     # url(r'^$', 'mytwitter.views.home', name='home'),
     # url(r'^mytwitter/', include('mytwitter.foo.urls')),

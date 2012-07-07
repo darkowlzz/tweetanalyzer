@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <p>Click to unsubscribe: </p>
+    {% if form.errors %}
+        <p style="color:red;">
+            Please correct the error {{ form.errors|pluralize }} below.
+        </p>
+    {% endif %}
+
+    {% for l in lst %}
+    <form action="" method="post">{% csrf_token %}
+        <img src="http://api.twitter.com/1/users/profile_image/{{ l }}.json"/>
+        <input type="submit" value="{{ l }}" name="handler">
+    </form>
+    {% endfor %}
+{% endblock %}

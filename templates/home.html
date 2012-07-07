@@ -1,10 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
+    {% if not lst %}
+        <p>Start subscribing to other's tweets.</p>
+    {% else %}
         <p>You are subscribed to:</p>
         <ul>
             {% for handlers in lst %}
-                <li><a href="/tweets/{{ handlers.following }}/0/"><img src="http://api.twitter.com/1/users/profile_image/{{ handlers.following }}.json"/></a></li>
+                <li><a href="/tweets/{{ handlers.following }}/0/"><img src="http://api.twitter.com/1/users/profile_image/{{ handlers.following }}.json" align="middle"/>{{ handlers.following }}</a></li>
             {% endfor %}
         </ul>
+    {% endif %}
 {% endblock %}

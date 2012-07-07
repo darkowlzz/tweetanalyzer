@@ -95,3 +95,31 @@ def subscribe(request):
 @login_required
 def thanks(request):
     return render_to_response('thanks.html', context_instance=RequestContext(request, processors=[custom_proc]))
+
+
+@login_required
+def unsubscribe(request):
+    if request.method == 'POST':
+        form = FollowForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data  # make the received data more pythonic
+            a = Usr.objects.get(user=request.user, following=cd['handler']) # creates an instance of Usr according to the received data from POST request
+            b = Follow.objects.get(handler=cd['handler'])   # creates an instance of Follow according to the received data from the POST request
+            
+            a.delete()
+            b.delete()    #this will fail if a user is already being followed by TweetAnalyzer
+
+            return HttpResponseRedirect('/unsubscribe/thanks/')
+
+    else:
+
+        # list of users already subscribed
+        lst = []
+        following = Usr.objects.filter(user=request.user)
+        for f in following:
+            lst.append(f.following)
+        
+        #    form = FollowForm()
+        return render_to_response('unsub_form.html', {'lst': lst}, context_instance=RequestContext(request, processors=[custom_proc]))
+
+
